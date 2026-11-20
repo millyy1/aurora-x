@@ -1,0 +1,601 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurora X | Conecte-se ao Extraordinário</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --azul: #168cff;
+  --roxo: #873cff;
+  --fundo: #050713;
+  --texto: #ffffff;
+  --cinza: #a9b0c5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(5,7,19,.88);
+  backdrop-filter: blur(15px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(90,130,255,.15);
+}
+
+.logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.logo span {
+  background: linear-gradient(90deg, var(--azul), var(--roxo));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+nav {
+  display: flex;
+  gap: 30px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 13px;
+  transition: .3s;
+}
+
+nav a:hover {
+  color: var(--azul);
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px 20px 80px;
+  background:
+    radial-gradient(ellipse at 50% 55%, rgba(28,90,255,.20), transparent 55%),
+    radial-gradient(ellipse at 80% 30%, rgba(125,40,255,.15), transparent 45%);
+  position: relative;
+}
+
+.hero-content {
+  max-width: 850px;
+}
+
+.tag {
+  color: #80baff;
+  letter-spacing: 5px;
+  font-size: 12px;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(40px, 8vw, 85px);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.hero h1 span {
+  background: linear-gradient(90deg, #16a5ff, #9c54ff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  color: var(--cinza);
+  font-size: 16px;
+  line-height: 1.8;
+  max-width: 620px;
+  margin: auto;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 35px;
+  padding: 14px 32px;
+  border-radius: 40px;
+  color: white;
+  text-decoration: none;
+  background: linear-gradient(100deg, #087fff, #803cff);
+  box-shadow: 0 0 25px rgba(35,120,255,.35);
+  transition: .3s;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 35px rgba(110,70,255,.65);
+}
+
+section {
+  padding: 100px 8%;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.section-title h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(25px, 4vw, 38px);
+  margin-bottom: 15px;
+}
+
+.section-title p {
+  color: var(--cinza);
+  font-size: 14px;
+}
+
+.products {
+  background: linear-gradient(180deg, #080b1a, #050713);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.product-card {
+  background: linear-gradient(145deg, #111a32, #090d1b);
+  border: 1px solid rgba(75,140,255,.2);
+  border-radius: 20px;
+  padding: 30px 22px;
+  text-align: center;
+  transition: .35s;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--azul);
+  box-shadow: 0 10px 35px rgba(20,110,255,.15);
+}
+
+.phone {
+  height: 190px;
+  width: 105px;
+  margin: 0 auto 25px;
+  border-radius: 22px;
+  border: 4px solid #52617c;
+  background:
+    radial-gradient(circle at 70% 30%, #a85aff, transparent 25%),
+    linear-gradient(145deg, #087bff, #161b49 65%, #9b37ff);
+  box-shadow: 0 0 30px rgba(36,115,255,.25);
+  position: relative;
+}
+
+.phone::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 5px;
+  border-radius: 10px;
+  background: #10131d;
+}
+
+.phone::after {
+  content: "";
+  position: absolute;
+  top: 13px;
+  left: 9px;
+  width: 23px;
+  height: 48px;
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,.55);
+}
+
+.wave {
+  background: linear-gradient(145deg, #12b5ff, #143d9c, #161b49);
+}
+
+.infinite {
+  background: linear-gradient(145deg, #8e1c47, #3c102d, #d24c79);
+}
+
+.prime {
+  background: linear-gradient(145deg, #397cff, #28145e, #a74cff);
+}
+
+.product-card h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.product-card .price {
+  font-size: 24px;
+  font-weight: 700;
+  color: #72baff;
+  margin: 18px 0;
+}
+
+.product-card ul {
+  list-style: none;
+  color: var(--cinza);
+  font-size: 12px;
+  line-height: 2.2;
+}
+
+.features {
+  background: #080b19;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px;
+}
+
+.feature {
+  padding: 28px;
+  border-radius: 16px;
+  background: #10172a;
+  border: 1px solid rgba(100,140,255,.15);
+}
+
+.feature .symbol {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.feature h3 {
+  color: #76baff;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  color: var(--cinza);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.about {
+  text-align: center;
+  background:
+    radial-gradient(ellipse at center, rgba(75,55,190,.13), transparent 65%);
+}
+
+.about-content {
+  max-width: 850px;
+  margin: auto;
+}
+
+.about-content p {
+  color: var(--cinza);
+  line-height: 2;
+  font-size: 14px;
+}
+
+.values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  margin-top: 40px;
+}
+
+.value {
+  padding: 25px;
+  border-radius: 15px;
+  background: rgba(30,55,110,.25);
+}
+
+.value h3 {
+  color: #83baff;
+  margin-bottom: 8px;
+}
+
+.team {
+  background: #080b19;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 18px;
+}
+
+.member {
+  background: #111a2d;
+  padding: 25px 15px;
+  border-radius: 15px;
+  text-align: center;
+  border: 1px solid rgba(90,140,255,.15);
+}
+
+.member h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.member p {
+  color: #7eb9ff;
+  font-size: 12px;
+}
+
+footer {
+  padding: 45px 20px;
+  text-align: center;
+  background: #03050d;
+  border-top: 1px solid rgba(90,130,255,.15);
+}
+
+footer .logo {
+  margin-bottom: 12px;
+}
+
+footer p {
+  color: var(--cinza);
+  font-size: 12px;
+  line-height: 2;
+}
+
+@media (max-width: 700px) {
+  header {
+    padding: 16px 5%;
+  }
+
+  .logo {
+    font-size: 19px;
+  }
+
+  nav {
+    gap: 12px;
+  }
+
+  nav a {
+    font-size: 10px;
+  }
+
+  section {
+    padding: 75px 6%;
+  }
+
+  .hero {
+    min-height: 90vh;
+  }
+}
+
+@media (max-width: 420px) {
+  nav {
+    gap: 8px;
+  }
+
+  nav a {
+    font-size: 9px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">AURORA<span>X</span></div>
+  <nav>
+    <a href="#inicio">Início</a>
+    <a href="#produtos">Produtos</a>
+    <a href="#tecnologia">Tecnologia</a>
+    <a href="#sobre">Sobre</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <div class="tag">O FUTURO COMEÇA AGORA</div>
+    <h1>CONECTE-SE AO <span>EXTRAORDINÁRIO.</span></h1>
+    <p>
+      Tecnologia, inovação e design em perfeita harmonia.
+      Descubra uma nova maneira de viver conectado com a Aurora X.
+    </p>
+    <a href="#produtos" class="btn">EXPLORE NOSSOS SMARTPHONES</a>
+  </div>
+</section>
+
+<section class="products" id="produtos">
+  <div class="section-title">
+    <h2>NOSSA LINHA DE SMARTPHONES</h2>
+    <p>Encontre a tecnologia que combina com você.</p>
+  </div>
+
+  <div class="product-grid">
+
+    <div class="product-card">
+      <div class="phone"></div>
+      <h3>AURORAX LITE</h3>
+      <div class="price">R$ 1.250,00</div>
+      <ul>
+        <li>6 GB de RAM</li>
+        <li>128 GB de armazenamento</li>
+        <li>Bateria de 5000 mAh</li>
+        <li>Tela de 6,5" HD+ IPS</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <div class="phone wave"></div>
+      <h3>AURORAX WAVE</h3>
+      <div class="price">R$ 1.500,00</div>
+      <ul>
+        <li>8 GB de RAM</li>
+        <li>256 GB de armazenamento</li>
+        <li>Bateria de 6000 mAh</li>
+        <li>Tela de 6,6" FHD+ AMOLED</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <div class="phone prime"></div>
+      <h3>AURORAX PRIME</h3>
+      <div class="price">R$ 1.800,00</div>
+      <ul>
+        <li>12 GB de RAM</li>
+        <li>512 GB de armazenamento</li>
+        <li>Bateria de 7000 mAh</li>
+        <li>Tela AMOLED de 120 Hz</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <div class="phone infinite"></div>
+      <h3>AURORAX INFINITE</h3>
+      <div class="price">R$ 2.200,00</div>
+      <ul>
+        <li>18 GB de RAM</li>
+        <li>1 TB de armazenamento</li>
+        <li>Bateria de 7500 mAh</li>
+        <li>Tela AMOLED de 144 Hz</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section class="features" id="tecnologia">
+  <div class="section-title">
+    <h2>TECNOLOGIA QUE TRANSFORMA</h2>
+    <p>Conheça os diferenciais que fazem parte da experiência Aurora X.</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature">
+      <div class="symbol">⚡</div>
+      <h3>AXOS</h3>
+      <p>Sistema otimizado para oferecer desempenho, velocidade e fluidez.</p>
+    </div>
+
+    <div class="feature">
+      <div class="symbol">✦</div>
+      <h3>ARIA IA</h3>
+      <p>Assistente inteligente para facilitar tarefas e acompanhar seu dia.</p>
+    </div>
+
+    <div class="feature">
+      <div class="symbol">🌌</div>
+      <h3>CÉU NOTURNO</h3>
+      <p>Tecnologia pensada para registrar a beleza do céu e das estrelas.</p>
+    </div>
+
+    <div class="feature">
+      <div class="symbol">♫</div>
+      <h3>SOM 3D</h3>
+      <p>Uma experiência sonora imersiva para músicas, vídeos e conteúdos.</p>
+    </div>
+
+    <div class="feature">
+      <div class="symbol">◈</div>
+      <h3>RESISTÊNCIA</h3>
+      <p>Proteção e durabilidade para acompanhar diferentes momentos.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="section-title">
+    <h2>MAIS QUE TECNOLOGIA. UMA NOVA EXPERIÊNCIA.</h2>
+  </div>
+
+  <div class="about-content">
+    <p>
+      A Aurora X nasceu com o propósito de aproximar pessoas do futuro.
+      Somos uma marca que acredita que a tecnologia deve ser inovadora,
+      acessível e capaz de transformar a maneira como nos conectamos
+      com o mundo. Cada detalhe representa nossa busca por qualidade,
+      criatividade e evolução.
+    </p>
+
+    <div class="values">
+      <div class="value">
+        <h3>MISSÃO</h3>
+        <p>Desenvolver smartphones inovadores e acessíveis, oferecendo qualidade, praticidade e conectividade.</p>
+      </div>
+
+      <div class="value">
+        <h3>VISÃO</h3>
+        <p>Ser reconhecida como uma marca inovadora, conquistando espaço no mercado por meio da qualidade e confiança.</p>
+      </div>
+
+      <div class="value">
+        <h3>VALORES</h3>
+        <p>Inovação, criatividade, ética, responsabilidade, acessibilidade, inclusão e sustentabilidade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <div class="section-title">
+    <h2>NOSSA EQUIPE</h2>
+    <p>As pessoas por trás da Aurora X.</p>
+  </div>
+
+  <div class="team-grid">
+    <div class="member">
+      <h3>Mariane Lopes Melo</h3>
+      <p>Diretora Executiva (CEO)</p>
+    </div>
+
+    <div class="member">
+      <h3>Ana Claudia Santana Silva</h3>
+      <p>Diretora de Operações e Logística</p>
+    </div>
+
+    <div class="member">
+      <h3>José Augusto Alves Santos</h3>
+      <p>Diretor Financeiro</p>
+    </div>
+
+    <div class="member">
+      <h3>Hyago Silva Bastos</h3>
+      <p>Diretor de Desenvolvimento e Tecnologia</p>
+    </div>
+
+    <div class="member">
+      <h3>Dyjamilly Beatrys Santos</h3>
+      <p>Diretora de Marketing e Vendas</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="logo">AURORA<span>X</span></div>
+  <p>CONECTE-SE AO EXTRAORDINÁRIO.</p>
+  <p>© 2026 Aurora X. Projeto de marca fictícia para fins educacionais.</p>
+</footer>
+
+</body>
+</html>
